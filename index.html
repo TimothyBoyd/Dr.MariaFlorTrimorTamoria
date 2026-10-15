@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dr. Trimor-Tamoria</title>
 <meta name="description" content="Primary care and aesthetic wellness with Dr. Maria-Flor Trimor-Tamoria in National City, CA — family medicine, care, body contouring, skin rejuvenation and medical-grade skincare under one roof.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,6 +198,94 @@ textarea{min-height:90px;resize:vertical}
 
 footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
 .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px}
+
+
+/* ===== Mobile only (≤760px). Desktop styles above are untouched. ===== */
+.mbar{display:none}
+.swipe-hint{display:none}
+@media (max-width:760px){
+  section{padding-block:56px}
+  .sec-head{margin-bottom:24px;gap:16px}
+  .sec-head p{margin-top:10px;font-size:15px}
+
+  /* Nav */
+  .nav{padding-block:10px}
+  .nav-inner{padding:8px 8px 8px 18px}
+  .logo span{display:none}
+  .nav .btn{display:none}
+  .nav-inner{padding:14px 18px}
+
+  /* Hero */
+  .hero{margin-top:-70px;padding-top:70px}
+  .hero-grid{padding-block:40px 20px;gap:24px}
+  .hero-copy{gap:20px;padding-bottom:0}
+  .hero h1{font-size:clamp(40px,12.5vw,58px)}
+  .hero-lede{font-size:16px}
+  .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .hero-actions .btn{justify-content:center;padding:14px 10px;font-size:11.5px;letter-spacing:.04em;text-align:center}
+  .hero-actions .btn svg{display:none}
+  .hero-pillars{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter)}
+  .hero-pillars::-webkit-scrollbar{display:none}
+  .hero-pillars span{white-space:nowrap;flex:0 0 auto}
+  .portrait{min-height:0;aspect-ratio:4/5;max-height:440px;width:100%}
+
+  /* About: compact years badge sits beside the heading area */
+  .about{gap:20px}
+  .about-years{aspect-ratio:auto;min-height:0;flex-direction:row;align-items:center;gap:16px;padding:20px 22px}
+  .about-years .num{font-size:64px}
+  .about-years .lbl{font-size:12px;line-height:1.4}
+  .about-copy{gap:14px}
+  .about-copy > p{font-size:16px}
+  .focus{gap:0;margin-top:4px}
+  .focus li{padding-block:14px;border-top-color:var(--line)}
+
+  /* Services */
+  .paths{gap:12px}
+  .path{padding:24px;gap:16px}
+  .path ul{grid-template-columns:1fr 1fr;gap:8px 14px}
+  .path li{font-size:14px;padding-top:8px}
+  .path .btn{align-self:stretch;justify-content:center}
+
+  /* Technology: swipeable carousel instead of a long stack */
+  #technology .head-actions{display:none}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--gutter)) 16px;padding-inline:var(--gutter)}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);padding-bottom:4px}
+  .gallery::-webkit-scrollbar{display:none}
+  .device{flex:0 0 78%;aspect-ratio:4/5;scroll-snap-align:start}
+  .device .reveal{padding:18px;gap:10px}
+  .device .reveal p{font-size:13.5px}
+  .swipe-hint{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .fine{font-size:12px;margin-top:16px}
+
+  /* Skincare: image leads, copy follows */
+  .skin{gap:12px}
+  .skin-img{order:-1;min-height:220px}
+  .skin-copy{padding:24px;gap:14px}
+  .skin-copy .btn{align-self:stretch!important;justify-content:center}
+
+  /* Visit */
+  .visit-copy{padding:28px 22px;gap:16px}
+  .visit-copy h2{font-size:clamp(32px,10vw,44px)}
+  .visit dl{grid-template-columns:1fr;gap:4px}
+  .visit dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:8px}
+  .hours{max-width:none}
+  form{padding:22px}
+  input,select,textarea{font-size:16px} /* prevents iOS zoom on focus */
+
+  footer{padding-block:28px 24px}
+
+  /* Sticky action bar */
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .mbar{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(255,255,255,.88);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:6px;padding:13px 8px;border-radius:999px;font:600 12px/1 var(--body);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .mbar a.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mbar svg{width:15px;height:15px}
+}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -485,6 +573,7 @@ footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
         </article>
       </div>
 
+      <p class="swipe-hint" aria-hidden="true"><span>Swipe to see all 12</span><span>Tap a card for details →</span></p>
       <p class="fine">Device names and trademarks belong to their manufacturers. Results vary by person. Every treatment begins with a consultation with Dr. Trimor-Tamoria to confirm it's right for you.</p>
     </div>
   </section>
@@ -515,7 +604,7 @@ footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
           <p style="max-width:44ch;color:#3e3843">Request a primary care appointment or a complimentary aesthetic consultation. The office will confirm your time.</p>
           <dl>
             <dt>Phone</dt><dd><a href="tel:+16192675884" style="text-decoration:none;font-weight:600">(619) 267-5884</a></dd>
-            <dt>Address</dt><dd>502 Euclid Ave., #103<br>National City, CA 91950 · <a href="https://www.google.com/maps/search/?api=1&amp;query=502+Euclid+Ave+%23103+National+City+CA+91950" target="_blank" rel="noopener">Directions ↗</a></dd>
+            <dt>Address</dt><dd>502 Euclid Ave., #103<br>National City, CA 91950 · <a href="https://maps.apple.com/?address=502%20Euclid%20Ave%20%23103%2C%20National%20City%2C%20CA%2091950&amp;q=Dr.%20Trimor-Tamoria" target="_blank" rel="noopener">Directions ↗</a></dd>
           </dl>
           <table class="hours" aria-label="Office hours">
             <tr data-d="1"><th>Monday</th><td>9:00 AM – 5:00 PM</td></tr>
@@ -556,6 +645,12 @@ footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
     <span>This site is for general information and is not medical advice.</span>
   </div>
 </footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a href="tel:+16192675884"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
+  <a href="https://maps.apple.com/?address=502%20Euclid%20Ave%20%23103%2C%20National%20City%2C%20CA%2091950&amp;q=Dr.%20Trimor-Tamoria" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Directions</a>
+  <a class="primary" href="#visit">Book a visit</a>
+</nav>
 
 <script>
 // Show the styled fallback when a product image hasn't been added yet
