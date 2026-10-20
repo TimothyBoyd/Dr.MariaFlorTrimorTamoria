@@ -623,7 +623,7 @@ footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
         <div class="visit-copy">
           <p class="eyebrow">Visit the practice</p>
           <h2>Book your visit</h2>
-          <p style="max-width:44ch;color:#3e3843">Request a primary care appointment or a complimentary aesthetic consultation. The office will confirm your time.</p>
+          <p style="max-width:44ch;color:#3e3843">Fill this out and tap <strong>Text my request</strong>. Your messages app opens with everything filled in, ready to send to the office at (619) 399-9100.</p>
           <dl>
             <dt>Phone</dt><dd><a href="tel:+16192675884" style="text-decoration:none;font-weight:600">(619) 267-5884</a></dd>
             <dt>Address</dt><dd>502 Euclid Ave., #103<br>National City, CA 91950 · <a href="https://maps.apple.com/?address=502%20Euclid%20Ave%20%23103%2C%20National%20City%2C%20CA%2091950&amp;q=Dr.%20Trimor-Tamoria" target="_blank" rel="noopener">Directions ↗</a></dd>
@@ -662,7 +662,7 @@ footer{padding-block:40px 56px;color:var(--ink-soft);font-size:13.5px}
             </div>
           </fieldset>
           <label for="b-note">Anything we should know?<textarea id="b-note" name="note"></textarea></label>
-          <button class="btn btn-dark" type="submit" style="justify-content:center">Request appointment</button>
+          <button class="btn btn-dark" type="submit" style="justify-content:center">Text my request</button>
           <p class="form-note" id="b-msg" role="status"></p>
         </form>
       </div>
@@ -715,14 +715,34 @@ chips.forEach(function(chip){
 // Highlight today's hours
 (function(){var r=document.querySelector('.hours tr[data-d="'+new Date().getDay()+'"]'); if(r) r.classList.add('today');})();
 
-// Booking form: hook this up to the client's scheduling or email service
+// Booking form: opens the visitor's texting app with a pre-filled message to the office
+var OFFICE_TEXT = '+16193999100';
 document.getElementById('book').addEventListener('submit', function(e){
   e.preventDefault();
-  var name = document.getElementById('b-name').value.trim();
-  var phone = document.getElementById('b-phone').value.trim();
+  var val = function(id){ return document.getElementById(id).value.trim(); };
+  var name = val('b-name'), phone = val('b-phone'), email = val('b-email'),
+      type = val('b-type'), note = val('b-note');
+  var when = (document.querySelector('input[name="when"]:checked') || {}).value || '';
   var msg = document.getElementById('b-msg');
   if (!name || !phone){ msg.textContent = 'Add your name and phone number so the office can reach you.'; return; }
-  msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. Your request is ready to send once the form is connected to the office inbox. You can also call (619) 267-5884.';
+
+  var lines = [
+    'Hi Dr. Trimor-Tamoria\'s office, I would like to book a visit.',
+    '',
+    'Name: ' + name,
+    'Phone: ' + phone
+  ];
+  if (email) lines.push('Email: ' + email);
+  lines.push('Visit type: ' + type);
+  if (when) lines.push('How soon: ' + when);
+  if (note) lines.push('Notes: ' + note);
+  var body = encodeURIComponent(lines.join('\n'));
+
+  // iPhone/iPad/Mac use "&body=", Android uses "?body="
+  var apple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent);
+  window.location.href = 'sms:' + OFFICE_TEXT + (apple ? '&' : '?') + 'body=' + body;
+
+  msg.textContent = 'Opening your messages app. If nothing opens, text (619) 399-9100 or call (619) 267-5884.';
 });
 </script>
 </body>
